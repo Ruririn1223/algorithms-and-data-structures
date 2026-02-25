@@ -17,16 +17,13 @@ int main() {
     int itemCount = fileManager_readBudgetItems("budget.txt", items, MAX_ITEMS);
 
     if (itemCount == 0) {
-        fprintf(stderr, "\n!!! КРИТИЧЕСКАЯ ОШИБКА !!!\n");
-        fprintf(stderr, "Не удалось прочитать данные из файла 'budget.txt'\n");
-        fprintf(stderr, "Возможные причины:\n");
-        fprintf(stderr, "  1. Файл 'budget.txt' отсутствует в папке с программой\n");
-        fprintf(stderr, "  2. Файл пустой или содержит только заголовок\n");
-        fprintf(stderr, "  3. Некорректный формат данных (должно быть: Наименование;Цена;Ед.изм;Количество)\n");
-        fprintf(stderr, "  4. Неправильные разделители (должна быть точка с запятой ';')\n\n");
-        fprintf(stderr, "Пример корректной строки файла:\n");
-        fprintf(stderr, "Штукатурка стен;450.00;м2;35.5\n");
-        return 1;
+        printf("Файл не найден. Используем тестовые данные.\n");
+        items[0] = budgetItem_create("Штукатурка стен", 450.0, "м2", 35.5);
+        items[1] = budgetItem_create("Поклейка обоев", 320.0, "м2", 42.0);
+        items[2] = budgetItem_create("Укладка плитки", 890.0, "м2", 18.3);
+        items[3] = budgetItem_create("Монтаж проводки", 1200.0, "точка", 15.0);
+        items[4] = budgetItem_create("Сантехника", 2500.0, "шт", 8.0);
+        itemCount = 5;
     }
 
     fileManager_printArray(items, itemCount, "Исходная смета");
@@ -55,7 +52,7 @@ int main() {
     fileManager_printArray(mergeSorted, itemCount, "Сортировка слиянием");
     printf("Время: %.6f мс\n", mergeTime);
 
-    printf("\n=== Сравнение ===\n");
+    printf("\nСравнение\n");
     printf("Выбором: %.6f мс\n", selTime);
     printf("Слиянием: %.6f мс\n", mergeTime);
     if (mergeTime > 0) printf("Ускорение: %.2fx\n", selTime / mergeTime);

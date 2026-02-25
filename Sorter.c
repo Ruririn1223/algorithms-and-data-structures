@@ -61,14 +61,12 @@ void sorter_mergeSort(BudgetItem arr[], int n) {
 double sorter_measureTimeSelection(BudgetItem arr[], int n) {
     if (n <= 0) return 0.0;
 
-    // Создаём шаблон исходных данных (неизменяемый)
     BudgetItem* template = (BudgetItem*)malloc(n * sizeof(BudgetItem));
     BudgetItem* workArray = (BudgetItem*)malloc(n * sizeof(BudgetItem));
     memcpy(template, arr, n * sizeof(BudgetItem));
 
     clock_t start = clock();
     for (int i = 0; i < MEASURE_ITERATIONS; i++) {
-        // Восстанавливаем исходный массив перед КАЖДОЙ сортировкой!
         memcpy(workArray, template, n * sizeof(BudgetItem));
         sorter_selectionSort(workArray, n);
     }

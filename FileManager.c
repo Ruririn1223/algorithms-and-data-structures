@@ -29,7 +29,7 @@ int fileManager_readBudgetItems(const char* filename, BudgetItem items[], int ma
 }
 
 void fileManager_printArray(const BudgetItem arr[], int n, const char* title) {
-    printf("\n=== %s ===\n", title);
+    printf("\n%s \n", title);
     printf("%-30s %10s %-8s %10s %12s\n",
         "Наименование", "Цена", "Ед.изм", "Кол-во", "Итого");
     printf("-----------------------------------------------------------------------\n");
