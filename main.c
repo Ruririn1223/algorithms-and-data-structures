@@ -43,12 +43,14 @@ int main() {
     BudgetItem selSorted[MAX_ITEMS];
     memcpy(selSorted, items, itemCount * sizeof(BudgetItem));
     double selTime = sorter_measureTimeSelection(selSorted, itemCount);
+    sorter_selectionSort(selSorted, itemCount);
     fileManager_printArray(selSorted, itemCount, "Сортировка выбором");
     printf("Время: %.6f мс\n", selTime);
 
     BudgetItem mergeSorted[MAX_ITEMS];
     memcpy(mergeSorted, items, itemCount * sizeof(BudgetItem));
     double mergeTime = sorter_measureTimeMerge(mergeSorted, itemCount);
+    sorter_mergeSort(mergeSorted, itemCount);
     fileManager_printArray(mergeSorted, itemCount, "Сортировка слиянием");
     printf("Время: %.6f мс\n", mergeTime);
 
